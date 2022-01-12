@@ -14,3 +14,5 @@ It uses only JavaScript to build a cross-platform mobile app. React Native is sa
 <b>React JS</b> - often simply referred to as just “React” - is a JavaScript library designed for developing the view layer for mobile and web-based applications. 
 </pre>
 
+React & Devops first<br>
+Selenium in the end.
