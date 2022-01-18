@@ -105,3 +105,7 @@ Others
 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 <a name="one"><h2>1.1 Course Description</h2></a><br>
+
+Npm vs Npx?
+<p>
+They are package manager just like pip in python. Npx does not save packages it run only once but npm save packages inside our computer.</p>
