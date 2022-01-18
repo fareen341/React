@@ -109,3 +109,29 @@ Others
 Npm vs Npx?
 <p>
 They are package manager just like pip in python. Npx does not save packages it run only once but npm save packages inside our computer.</p>
+<p>app.js is not html it is jsx(javascript syntax extension).</p>
+
+
+<h3>To add bootstrap in react</h3>
+<pre>
+Just include the script and css of bootstrap inside index.html
+We can also use bootstrap react website: https://react-bootstrap.github.io/getting-started/introduction
+</pre>
+
+<h3>Creating Components</h3>
+<pre>
+Step1: remove the default react code in App.js and replace it with empty tags
+<>
+</>
+
+Step2: inside (src) -> create (MyComponents) folder -> Headers.js
+Create a navbar of your website
+
+Step3: include this newly created component (Headers) inside App.js 
+import Headers from "./MyComponents/Headers"
+Also inside the App() function
+<>
+   <Headers/>
+</>
+
+</pre>
