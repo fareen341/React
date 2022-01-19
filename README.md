@@ -131,7 +131,94 @@ Step3: include this newly created component (Headers) inside App.js
 import Headers from "./MyComponents/Headers"
 Also inside the App() function
 <>
-   <Headers/>
+   &lt;Headers/&gt;
 </>
+</pre>
 
+<h3>Run React App</h3>
+To run the application use:
+go inside the app and use $ npm-start
+
+<h3>Short cut in vs code</h3>
+Use rfc for react functional component
+User rafc for react arrow functional component
+any one of them and press enter
+
+<h3>Props in react:</h3>
+<p>This is used to pass data from parent component to child component</p>
+<pre>
+App.js
+&lt;Headers title="MyTodos"/&gt;
+
+To pass this title in Headers component we'll use props
+
+Headers.js
+step1: 
+pass props inside the parameter 
+export default function Headers(props)
+
+Step2:
+where ever we need this title we can use props.title:
+&lt;a class="navbar-brand" href="#"&gt;{props.title}&lt;/a&gt;
+
+O/p: this will change the title whic we give in App.js in our Header.js
+</pre>
+
+<h3>Passing boolean value</h3>
+<pre>
+Suppose there is a requirement where we need to show searchbar in Headers component only when it is true in App.js
+
+App.js
+&lt;Headers title="MyTodos" searchBar={true}/&gt;
+
+Header.js
+props.searchBar? &lt;form class="d-flex"&gt;
+        &lt;input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/&gt;
+        &lt;button class="btn btn-outline-success" type="submit"&gt;Search&lt;/button&gt;
+      </form>: ""}
+      
+Here if it is true show the form which is after questionmark that stmt is true and if false show nothing the invertedcomma ""
+</pre>
+
+<h3>Type checking(using propTypes)</h3>
+<pre>
+step1: import it
+import PropTypes from 'prop-types'
+
+Step2: outside the return statement of Header.js
+
+Headers.prototype = {
+  title: PropTypes.string
+}
+
+Step3: 
+&lt;Headers title={45} /&gt;
+
+
+O/p: this will show the warning in console that we've created title string type and gave number
+So it does the type checking, we can avoid it at local env so it does'nt create problem at production.
+</pre>
+
+<h3>Default value(using defaultProps)</h3>
+<pre>
+App.js
+&lt;Headers /&gt;
+App.js has no title value given here, if here no title is given we can give the default title
+
+Headers.defaultProps = {
+  title: "AddTitle"
+}
+
+always give default value on top of type checking, or may overwrite the values. 
+
+O/p: now it'll show AddTitle instead of no value.
+</pre>
+
+<h3>To make a field required</h3>
+<pre>
+Headers.prototype = {
+  title: PropTypes.string.isRequired
+}
+
+Now we made title required if we don't give its value in App.js we'll get warning on console.
 </pre>
