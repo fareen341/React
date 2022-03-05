@@ -111,6 +111,14 @@ Npm vs Npx?
 They are package manager just like pip in python. Npx does not save packages it run only once but npm save packages inside our computer.</p>
 <p>app.js is not html it is jsx(javascript syntax extension).</p>
 
+<h3>Creating React App</h3>
+<pre>
+npx create-react-app my-app
+cd my-app
+
+//starting app
+npm start
+</pre>
 
 <h3>To add bootstrap in react</h3>
 <pre>
