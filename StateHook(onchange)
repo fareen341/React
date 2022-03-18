@@ -1,0 +1,15 @@
+import React, { useState } from 'react'
+
+export const AxiosGet = () => {
+    const [inputValue, setinputValue] = useState("fareen");  
+        let onChange = (event) => {
+            const inputValue = event.target.value;
+            setinputValue(inputValue);
+        } 
+                return (
+                    <div>
+                        <input type="text" onChange={onChange} />
+                        {inputValue}
+                    </div>
+                );
+        };
