@@ -1,0 +1,173 @@
+//without context hook
+
+App.js
+import logo from './logo.svg';
+import './App.css';
+import Login from './Login'
+import UserDisplay from "./UserDisplay";
+import StateHook from  "./StateHook"
+import { AxiosGet } from './AxiosGet';
+import { useRef, useState } from 'react';
+
+function App() {
+  const [username, setUsername] = useState("");
+  return (
+    <> 
+    <Login setUsername={setUsername} /> 
+    <UserDisplay username={username} />
+    </>
+  );
+}
+
+export default App;
+
+
+
+
+
+
+
+
+Login.jsx
+
+import React from 'react';
+
+function Login({setUsername}){	
+	return (		
+		<div>
+			<input onChange={(event) =>{
+				setUsername(event.target.value);
+			}} />
+		</div>
+	);
+}
+
+export default Login;
+
+
+
+
+
+
+
+
+UserDisplay.jsx
+
+import React from 'react'
+
+export const UserDisplay = ({username}) => {
+
+  return (
+	<div>
+		<h1>Username: {username}</h1>
+	</div>
+  );
+}
+
+export default UserDisplay;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=============================================================================================
+
+
+//with using context hook
+
+App.js
+
+import logo from './logo.svg';
+import './App.css';
+import Login from './Login'
+import UserDisplay from "./UserDisplay";
+import StateHook from  "./StateHook"
+import { AxiosGet } from './AxiosGet';
+import { useRef, useState } from 'react';
+
+export const MyContext = createContext(null);
+
+function App() {
+  const [username, setUsername] = useState("");
+  return (
+    <MyContext.Provider value={{username, setUsername}}>    //value contains states and functions
+    <Header /> 
+    <Footer />
+    </MyContext.Provider> 
+  );
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+Login.jsx
+import React, {useContext} from 'react';
+import {MyContext} from './App'
+
+function Login(){	
+
+	const {setUsername} = useContext(MyContext)
+
+	return (		
+		<div>
+			<input onChange={(event) =>{
+				setUsername(event.target.value);
+			}} />
+		</div>
+	);
+}
+
+export default Login;
+
+
+
+
+
+
+
+
+
+UserDisplay.jsx
+
+import React, {useContext}  from 'react'
+import {MyContext} from './App'
+
+export const UserDisplay = () => {
+	const {username} = useContext(MyContext);
+
+  return (
+	<div>
+		<h1>Username: {username}</h1>
+	</div>
+  );
+}
+
+export default UserDisplay;
+
+
+
+
+
+
+
+
+NOTE: if it shows error that footer or header component is not defined then change it accordingly cuz i have replace footer and header with Login and UserDisplay
+
+
