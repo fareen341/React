@@ -1,0 +1,50 @@
+//in App.js (parent component)
+import './App.css';
+import Footer from "./Footer";
+import { useRef } from 'react';
+
+function App() {
+  const buttonRef = useRef(null);
+  return (
+    <> 
+    <button
+    onClick={()=>{
+      buttonRef.current.alterToggle();
+    }}>
+      parent button
+    </button>
+    <Footer ref={buttonRef} />
+    </>
+  );
+}
+
+export default App;
+
+
+//in footer component (child component)
+import React from 'react'
+import { useImperativeHandle } from 'react';
+import { useState } from 'react';
+import { forwardRef } from 'react';
+
+export const Footer = forwardRef((props, ref) => {
+	const [toggle, setToggle] = useState(false);
+
+	useImperativeHandle(ref, () => ({
+		alterToggle() {
+			setToggle(!toggle);
+		},
+	}));
+
+  return (
+	<div>
+		{toggle && <span>Toggle called</span>}
+	</div>
+  );
+});
+
+
+export default Footer;
+
+
+// for this to be working we need to wrap the entire function in forwardRef
