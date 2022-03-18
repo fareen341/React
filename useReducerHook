@@ -1,0 +1,56 @@
+// without using the useReducer hook
+import React, { useState } from 'react'
+
+export const AxiosGet = () => {
+    const [inputValue, setinputValue] = useState(0);  
+    const [showText, setShowText] = useState(true); 
+    
+        let onClick = () => {
+            setinputValue(inputValue + 1);
+            setShowText(!showText);
+        } 
+                return (
+                    <div>
+                        <button onClick={onClick}>click</button>
+                        {inputValue}<br />
+                        {showText && <p>This is text</p>}
+                    </div>
+                );
+        };
+        
+     
+// with using the useReducer hook
+import React, { useReducer } from 'react'
+
+
+const reducer = (state, action) => {
+    switch(action.type) {
+        case "INCREMENT":
+            return {count: state.count +1, showText: state.showText}
+        
+        case "toggleShowText":
+            return {count: state.count, showText: !state.showText}  //it'll be opposite of above return stmt
+            
+        default:
+            return state
+    }
+};
+
+export const AxiosGet = () => {
+    const [state, dispatch] = useReducer(reducer, {count: 0, showText: true});  
+    // const [showText, setShowText] = useState(true); 
+    
+        
+                return (
+                    <div>
+                        <button 
+                        onClick={() =>{
+                            dispatch({type: "INCREMENT"});
+                            dispatch({type: "toggleShowText"});
+                        }}>
+                            click</button>
+                        {state.count}<br />
+                        {state.showText && <p>This is text</p>}
+                    </div>
+                );
+        };
