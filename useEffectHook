@@ -1,0 +1,21 @@
+import React, { useEffect } from 'react'
+import axios from "axios";
+import { useState } from 'react';
+
+
+export const AxiosGet = () => {
+    const [data, setData] = useState("initial email");
+    
+        useEffect(() => {
+            axios.get("https://jsonplaceholder.typicode.com/comments")
+            .then((response)=> {
+                    setData(response.data[0].email);
+                    console.log("api call");
+                });
+        }, []);       //empty array for it to render only once
+                return (
+                    <div>
+                        <h1>Hello {data}</h1>
+                    </div>
+                );
+        };
