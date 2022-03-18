@@ -1,0 +1,23 @@
+import React, { useEffect } from 'react'
+import axios from "axios";
+import { useState } from 'react';
+import { useRef } from 'react';
+
+
+
+export const AxiosGet = () => {
+    const inputRef = useRef(null);
+
+    const onClick = () => {
+        // console.log(inputRef.current.value)      //to access current value     
+        // inputRef.current.focus();        //focus on the input box on click of the button
+        inputRef.current.value = "";        //clears the value on input box
+    }
+        
+                return (
+                    <div>
+                        <input type="text" ref={inputRef} />
+                        <button onClick={onClick}>click to change val</button>
+                    </div>
+                );
+        };
