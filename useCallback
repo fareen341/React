@@ -1,0 +1,77 @@
+
+//parent component
+
+import React, {useContext}  from 'react'
+import { useCallback } from 'react';
+import { useState } from 'react';
+import {MyContext} from './App'
+import Header from './Header'
+
+export const Footer = () => {
+	const [toggle, setToggle] = useState(false);
+	const [data, setData] = useState("Welcome ")
+  
+  
+  const returnComment = (() =>{
+		return data ;
+	},[data]
+	);
+
+  return (
+	<div>
+		<Header returnComment = {returnComment} />
+		<button onClick={()=>{
+			setToggle(!toggle);
+		}}>
+			{" "}
+			Toggle button			
+		</button>
+		{toggle && <h1>toggle</h1>}
+	</div>
+  );
+}
+
+export default Footer;
+
+
+Without call back hook, it calls the function every time toggle button state changes
+To see changes replace the above function with this:
+
+//with call back function
+	const returnComment = useCallback((name) =>{
+		return data + name;
+	},[data]
+	);
+  
+Now it won't call the function every time toggle btn state changes, it only call when data changes   
+
+
+
+
+
+
+
+
+
+//child component
+import React, {useContext} from 'react';
+import { useEffect } from 'react';
+import {MyContext} from './App'
+
+function Header({returnComment}){	
+	useEffect(() =>{
+		console.log("Function was called");
+	}, [returnComment])
+	return (		
+		<div>
+			{returnComment}
+		</div>
+	);
+}
+
+export default Header;
+
+
+
+
+NOTE: now when we 
