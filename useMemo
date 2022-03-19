@@ -31,7 +31,7 @@ export const AxiosGet = () => {
             return longestName;
         };
 
-        const getLongestName = useMemo(() => findLongestName(data), [toggle])
+        const getLongestName = useMemo(() => findLongestName(data), [data])
         // [data] parameter tells when to recompute, so [data] means whenever data changes recompute it othervise don't 
         // if we write [toggle] here that means toggle value changes from true to false so the data inside find longest name will run every time toggle value changes
         
