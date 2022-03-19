@@ -1,0 +1,122 @@
+App.js
+
+import './App.css';
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import { Home } from "./Pages/Home";
+import { About } from "./Pages/About";
+import { Profile } from "./Pages/Profile";
+import { ErrorPage } from './Pages/ErrorPage';
+import { Login } from './Pages/Login';
+
+
+function App() {
+  return (
+    <Router>
+      <nav>
+      <h1>Using link tag</h1>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/profile">Profile</Link>
+
+        <h1>Using anchor tag</h1>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/profile">Profile</a>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+      {/* npm link ../practiceApp/node_modules/react  */}
+
+      <div>
+        Footer!! this will remain common on every pages
+        Whatever inside the Routes will changes
+    </div>
+    </Router>
+
+
+    
+  );
+}
+
+export default App;
+
+
+
+
+Rest all pages will be the same like:
+import React from 'react'
+
+export const Home = () => {
+  return (
+    <div>This is Home component</div>
+  )
+}
+
+
+
+
+
+
+//To use history we can use useNavigate hook
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+
+export const Profile = () => {
+
+  let navigate = useNavigate();
+
+  return (
+    <div>This is Profile Component
+      <button onClick={()=>{
+        navigate("/login");
+      }}>
+        Login
+      </button>
+    </div>
+
+
+  )
+}
+
+
+
+
+
+
+
+//To use paramaters we can use useParams hook
+
+APp.js
+
+<Route path="/profile/:username" element={<Profile />} />
+
+Profile.js
+
+import React from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+
+export const Profile = () => {
+  let {username} = useParams();
+
+  return (
+    <div>This is Profile Component for {username}
+    </div>
+
+
+  )
+}
+
+
+
+
+NOTE: now this url http://localhost:3000/profile will redirect to error page cuz now we've to pass a parameter after slash as in
+http://localhost:3000/profile/fareen
+
+o/p:
+This is Profile Component for fareen
+
