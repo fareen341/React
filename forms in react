@@ -1,0 +1,82 @@
+import React, { useState } from 'react'
+
+export const Forms = () => {
+    const [userRegistration, setUserRegistration] = useState({
+        username:"",
+        email:"",
+        phone:"",
+        password:""
+    });
+    const [records, setRecords] = useState([]);
+
+    const handleInput = (e) =>{
+        const names=e.target.name;
+        const values=e.target.value;
+        console.log(values);
+        setUserRegistration({...userRegistration,[names]:values})
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newRecord = {...userRegistration, id:new Date().getTime().toString() }
+        console.log(newRecord);
+        console.log(records);
+        setRecords([...records, newRecord]);
+        console.log("new array")
+        console.log(records);
+        setUserRegistration({username:"", password:"", email:"", phone:""});
+    }
+  return (
+   
+        <>
+        <form action="">
+            <div>
+                <label htmlFor="username">Full name</label>
+                <input type="text" name="username" id="username" value={userRegistration.username} onChange={handleInput} /><br /><br />
+
+                <label htmlFor="email">email</label>
+                <input type="text" name="email" id="email" value={userRegistration.email} onChange={handleInput} /><br /><br />
+                
+                <label htmlFor="phone">phone</label>
+                <input type="text" name="phone" id="phone" value={userRegistration.phone} onChange={handleInput} /><br /><br />
+                
+                <label htmlFor="password">password</label>
+                <input type="text" name="password" id="password" value={userRegistration.password} onChange={handleInput} /><br /><br />
+                
+                <button type="submit" onClick={handleSubmit}>Register</button>
+            </div>
+        </form>
+        <br />
+        <br />
+        <div>
+            {
+            // records.map((curElem) => {
+            //     return (
+            //     <div key={curElem.id}>
+                    
+            //         <p>{curElem.username}</p>
+            //         <p>{curElem.email}</p>
+            //         <p>{curElem.phone}</p>
+            //         <p>{curElem.password}</p>
+            //     </div>
+            //     )
+            // })
+            
+            //OR
+            
+            records.map((curElem) => {
+                const { id,username,email,phone,password } = curElem
+                return (
+                <div key={id}>
+                    
+                    <p>{username}</p>
+                    <p>{email}</p>
+                    <p>{phone}</p>
+                    <p>{password}</p>
+                </div>
+                )
+            })
+        }
+        </div>
+        </>
+  )
+}
