@@ -80,3 +80,48 @@ export const Forms = () => {
         </>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//for validation we can do something like this inside the submit button:
+
+const handleSubmit = (e) => {
+        if (Object.values(userRegistration) === ""){
+            console.log("blank values")
+        }
+        else{
+            console.log("values are filled")
+        }
+        console.log("userRegistration",userRegistration.username);
+        console.log("done")
+        e.preventDefault();
+        const newRecord = {...userRegistration, id:new Date().getTime().toString() }
+        console.log(newRecord);
+        console.log(records);
+        setRecords([...records, newRecord]);
+        console.log("new array")
+        console.log(records);
+        setUserRegistration({username:"", password:"", email:"", phone:""});
+    }
