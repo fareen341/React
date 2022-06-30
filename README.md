@@ -894,3 +894,96 @@ In your component just give image path. By default react will know its in public
 Creating react app:
 npx create-react-app my-app
 </pre>
+
+What is props in react?
+<pre>
+What are props in React? We use props in React to pass data from one component to another (from a parent component to a child component(s)). Props is just a shorter way of saying properties.
+</pre>
+
+What are states in react?
+<pre>
+This is used to change the state of the web page as in if data changes change it accordingly on the web page.A component's state can change over time; whenever it changes, the component re-renders.
+In functional component we can use useState hook for state maintaining.
+</pre>
+
+What is JSX?
+<pre>
+JavaScript XML
+</pre>
+
+Can web browsers read JSX directly? 
+<pre>
+For a web browser to read a JSX file, the file needs to be transformed into a regular JavaScript object. For this, we use Babel
+</pre>
+
+What is the virtual DOM?
+<pre>
+React keeps a lightweight representation of the real DOM in the memory, and that is known as the virtual DOM. When the state of an object changes, the virtual DOM changes only that object in the real DOM, rather than updating all the objects.
+</pre>
+
+Why is there a need for using keys in Lists?
+<pre>
+A key is a unique identifier and it is used to identify which items have changed, been updated or deleted from the lists
+It also helps to determine which components need to be re-rendered instead of re-rendering all the components every time. Therefore, it increases performance, as only the updated components are re-rendered
+</pre>
+
+Components in react?
+<pre>
+1)React appln is created with different components
+2)There are 2 components functional and class.
+</pre>
+
+What is the use of render() in React?
+<pre>
+It is required for each component to have a render() function. This function returns the HTML, which is to be displayed in the component.
+It is for class component.
+</pre>
+
+What is a higher-order component in React?
+<pre>
+A higher-order component acts as a container for other components. This helps to keep components simple and enables re-usability. They are generally used when multiple components have to use a common logic.
+</pre>
+
+Explain the lifecycle methods of components.
+<pre>
+
+</pre>
+
+QUESTIONS ON REDUX:
+
+What is Redux?
+<pre>
+Redux is an open-source, JavaScript library used to manage the application state.
+It is used for the entire application’s state management
+When we have components all the end of the hirerchy calling state from topmost component is a bit difficult so we can use redux in that case.
+</pre>
+
+What is React Router?
+<pre>
+1)React Router is a routing library built on top of React, which is used to create routes in a React application. 
+2)Also used for building single page appln.
+3)Using react-router, firse there will be Router and the Routes and then Route
+</pre>
+
+Styles in React?
+<pre>
+1))Using external stylesheet by giving class name, this is same like we use in css.
+
+2)Styles given on top eg:
+const mystyle ={
+	prop: "val",
+	}
+
+3)Inline styles eg: style={{prop: "val"}}
+4)Using style module
+
+</pre>
+
+Why React uses className over class attribute?
+<pre>
+class is a keyword in JavaScript, and JSX is an extension of JavaScript. That's the principal reason why React uses className instead of class. Pass a string as the className prop.
+</pre>
+
+
+
+
