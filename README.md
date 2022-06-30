@@ -986,3 +986,43 @@ Why React uses className over class attribute?
 <pre>
 class is a keyword in JavaScript, and JSX is an extension of JavaScript. That's the principal reason why React uses className instead of class. Pass a string as the className prop.
 </pre>
+
+useReducer?
+<pre>
+1)It is alternative to useState.
+2)It is usefull when we have many states on the same function.
+3)Also we can use redux for better state management.
+</pre>
+
+useRef?
+<pre>
+It can be used to access a DOM element directly.
+Example: To access current value of the inputbox. 
+</pre>
+
+useEffect?
+<pre>
+By using this Hook, you tell React that your component needs to do something after render.
+Example: calling an api
+Conside the eg i used in watchapp, in that example there should be one function which invoke the api so we can use useEffect to invoke that api cuz function needs call.
+</pre>
+
+useLayoutEffect?
+<pre>
+1)It is same as useEffect
+2)It execute before useEffect called.
+3)It is used when we want to display some information or anything before the useEffect called.
+</pre>
+
+useContext?
+<pre>
+The main difference between these two libraries is that Redux deals with changes of the state in a centralized manner. On the other hand, Context deals with them as they happen on the component level.
+</pre>
+
+useMemo?
+<pre>
+1)It is used for performance optimization.
+2)When we have large computation involve example calculate longest comment, everytime state
+changes it recompute the longest comment again. So we can use useMemo to remember the longest comment and change recomputes only when data changes. 
+</pre>
+
