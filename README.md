@@ -338,3 +338,556 @@ export const Restorant = () => {
 };
 
 </pre>
+
+
+<pre>
+react document
+
+
+Npm vs Npx?
+<p>
+They are package manager just like pip in python. Npx does not save packages it run only once but npm save packages inside our computer.</p>
+
+
+Extra:
+Developer tool
+
+Project:
+E-commerce
+Resume making
+
+Some basic functionality:
+CRUD
+Component
+Authentication(login/logout)
+Reading data using API
+Session
+
+
+----------------------------------------------------------------------
+
+<h3>Components in react</h3>
+<pre>
+In react everything is component. 
+
+<b>Basic structure of the react app</b>
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+	<>
+	
+	</>
+);
+
+
+<b>Creating a basic component</b>
+Rule: EVery component must start with capital letter.
+
+Step 1:
+inside src create a component Header.js
+
+Step 2: create a code for component
+using normal function:
+
+import React from 'react';
+
+function Header(){			//Header must be same as your component name
+	return
+	<h1>This is header component</h1>;
+}
+
+Step 3: to make this component visible 
+To use this component in index.js then we should export it and import it in App.js
+
+export default Heading;
+
+Step 4: import it in App.js
+import Header from "./Header"
+
+ReactDOM.render(
+	<>
+		<Header></Header>
+		     OR
+		<Header />
+	</>;
+
+Complete code:
+<pre>
+import React from 'react';
+
+function Header(){		
+	return (
+		<h1>This is header component</h1>
+	);
+}
+
+export default Heading;
+
+</pre>
+ 
+</pre>
+
+<h1>Props</h1>
+<pre>
+1)props short for property, also allow component dynamic
+2)if we want to share the name in header components we can use props
+3)It is just an object which contain attribute and values which is paased in parent component
+4)A component can have many props
+
+Consider it as a function where we create object and pass props for accessing
+
+
+Step 1: in App.js
+function App() {
+  return (
+    <>
+    <Header name="Created by Fareen" /> 
+    <Header name="Created by Annu" /> 
+    </>
+  );
+}
+
+Step 2: to retrive these values
+in Header component
+
+function Header(props){	
+	console.log(props)	
+	return (		
+		<div>
+			<h1>Component {props.name}</h1>			
+		</div>
+	);
+}
+
+
+<b>Passing multiple props</b>
+App.js
+<Header name="Created by Fareen" age="23" /> 
+
+Header.jsx
+<h1>Component {props.name} & age is {props.age}</h1>			
+
+
+<b>Passing child property</b>
+App.js
+<Header name="Created by Fareen" age="23" > 
+      <p>This is only for component created by Fareen</p>
+</Header>
+    
+Header.jsx
+<h1>Component {props.name} & age is {props.age}</h1>
+<p>{props.children}</p>	    
+    
+    
+<b>Using class components</b>    
+App.js
+<Header name="Created by Fareen" age="23" />
+
+Header.jsx
+class Welcome extents Component {
+	render(){
+		<h1>Component {this.props.name} & age is {this.props.age}</h1> 
+    	}
+}
+export default Welcome    
+    
+NOTE: props are immutable, its value cannot be changed
+
+Complete code:
+<pre>
+App.js
+function App() {
+  return (
+    <> 
+    <Header name="Created by Fareen" age="23" > 
+      <p>This is only for component created by Fareen</p>
+    </Header>
+    <Header name="Created by Annu" /> 
+    <Footer />
+    </>
+  );
+}
+
+function Header(props){	
+	console.log(props)	
+	//props.name = "Annu"		will throw an error cause its immutable
+	return (		
+		<div>
+			<h1>Component {props.name} & age is {props.age}</h1>			
+		</div>
+	);
+}
+
+</pre>
+</pre>
+
+<h1>States</h1>
+<pre>
+props vs state:
+
+Example we want to change the value from Welcome visitor to thanks for subscribing on click of the button we'll use state cuz,
+Once the props passed as welcome visitor it can never be changed
+
+1)It is maintained inside the same component where we have to use it.
+2)<b>You can't use Hooks inside a class component</b>, but you can definitely mix classes and function components with Hooks in a single tree. Whether a component is a class or a function that uses Hooks is an implementation detail of that component.
+3)<b>Don't call Hooks inside loops, conditions, or nested functions.</b> Instead, always use Hooks at the top level of your React function, before any early returns. By following this rule, you ensure that Hooks are called in the same order each time a component renders.
+
+Note: always remember to import useState hook
+
+Syntax:
+const [count, setCount] = userState(4)
+count: current state
+setCount: update state
+
+Example: increment and decrement the values on click of the button:
+
+First way:
+//this will run every time our component render on browser
+function InitiaCount() {
+	console.log('run function')
+	return 4
+}
+
+
+Second way:
+function StateHook(){	
+	const [count, setCount] = useState(InitiaCount())
+	
+//this will run only once when component render
+function StateHook(){	
+	const [count, setCount] = useState(() => {
+		console.log('run function')
+		return 4
+})
+
+So if we want to run only once when our component renders, then use Second way
+
+Complete code:
+<pre>
+import { useState } from 'react';
+
+
+//this will run every time our component render on browser
+/*
+function InitiaCount() {
+	console.log('run function')
+	return 4
+}
+*/
+
+function StateHook(){	
+	const [count, setCount] = useState(4)	
+	const [theme, setTheme] = useState('blue')
+
+	function decrementCount(){
+		/*setCount(count - 1)  //this is not the correct way we can use function os setCount
+		
+		//if we use again nothing happens
+		setCount(count - 1)  
+		*/
+		setCount((prevCount) => prevCount -1 )
+
+		//if we use again we get 2 minus
+		setCount((prevCount) => prevCount -1 )
+	}
+
+	function IncrementCount(){
+		setCount((prevCount) => prevCount + 1)
+		setTheme('red')
+	}
+
+	return (		
+		<div>
+			<button onClick={decrementCount}>-</button>
+			<span>{count} {theme}</span>
+			<button onClick={IncrementCount}>+</button>
+		</div>
+	);
+}
+</pre> 	
+
+
+diagram:
+<pre>
+
+
+<h1>Higher Order Component(HOC)</h1>
+<pre>
+To pass one component as props of another component
+Consider the above example, if we have 3 counters all of 3 in different color
+So if i give :
+<span style={{backgroundColor: "red"}}>{count} </span>
+
+then all 3 will have red color, if i want all 3 in different color then i can use HOC
+
+EXample:
+</pre>
+
+
+<h1>HTTP(this need forms and routing & hooks first)</h1>
+<pre>
+Axios is javascript library can be used with anything not just with react
+There are libraries for http requests as in Axios, FetchApi etc
+
+<b>Making a get request using axios package</b>
+Step 1: install package
+$ npm install axios
+
+Step 2: import axious package
+import axios from 'axios'
+
+Step 3:
+</pre>
+
+<h1>React Hooks</h1>
+<pre>
+1)useState Hooks: this is used to change the state of the web page as in if data changes change it accordingly on the web page.
+In vanilla js we have to get element and do all the stuff but in react we have state hook which does the same for us.
+
+If we do normal counter which counts the value on click of the button it wont changes the value on count tho if we console log it'll change, we can solve this useing state hook
+
+Creating stateehook
+const [initialVal, function] = useState(initialVal);
+function accept one parameter which is keep updating
+Example:
+const [initialVal, updateFun] = useState(0);
+for(i in [1,2,3]{ 
+	updateFun(i)
+}
+
+
+2)useReducer Hook: it is alternative/replacement of stateHook, it is usefull when we have many states on the same function 
+
+Example: useReducerHook in react git
+In this example we want to use two states at the same onclick, 
+when clicked:
+1)The value increment by 1 &
+2)The value of 2nd state change alternate(on click display and hide and this repeats).
+
+useState Hook is usefull when we have many states at the same click
+
+3)useEffect Hook: called whenever page rerender
+Whenever a page renders show hello world on console. Usually used when the page is render first
+
+Example: use api to get data and display when page renders, in useEffectHook example:
+when we the page renders useEffectHook called twice this is bcoz it first takes the initial value which is "initial email" and then it calls the useEffect and it render the api called.
+So to avoid this use empty array 
+
+4)useRef Hook: usefull in accessing the current values of the input and manuplauting the data inside input box as in clear the data inside the input on click of the button or focus on input box on click of the button etc.
+
+It return the object as in {current: input}
+So to access the property of input box
+n1Ref.current 
+n1Ref.current.value  //to access value
+
+5)useLayout Hook: to layout something when page renders it is kind of similar to useEffect hook
+
+useEffect VS useLayoutEffect 
+useLayout is called before useEffect called
+Conside the example useLayout hook to understand: 
+We've useEffect which change the current value of the inputbox
+Also we've useLayoutEffect which just console.log the current value of the inputbox 
+So when page renders it first called useLayoutEffect and console the current value and then it call useEffect and changed the value of input box.
+
+6)useImperativeHandler hook:
+this is usefull when we called a ref from parent component, as in there is a button in child component which is getting called from parent component
+
+7)Context Hook: useful when we have many states, we can't pass all of them as props(we can but its not a good idea) one way is using context hook
+It hepls to maintains state v. easily
+A context is a collection of states
+
+Example:
+one component takes the value from inputbox
+and other component display the value of the inputbox
+
+8)Memo hook: it is useful when we have to compute some thing example: 
+we have called an api which calls longest comment from the all comments using computation logic we've written
+And a toggle button 
+so whenever we click the toggle button everything recomputed the findlongestname also run every time 
+toggle runs eventho toggle is not even related to findlongestname still it is calculating everything
+
+In the example whenever we click the toggle button it returns this was computed on console which is written inside the findlongestname 
+To avoid findlongestname to run again and again w ecan use memo hook
+
+
+9)useCallback hook:
+This is same as usememo the difference is we're storing the function and not the data
+
+Using the call back hook the function does not called every time a state changes, it only called when data changes. 
+
+A FUNCTION IS RE-CREATED EVERY TIME A STATE CHANGE.
+
+</pre>
+
+
+<h1>React Routing</h1>
+<pre>
+We need react routing package install it usnig: 
+$ npm install react-router
+
+Make sure tht react version is added  inside package.json if not install again restart project do whatever.
+
+For history/ navigation we have to use useNavigate hook
+</pre>
+
+
+<b>react-router vs react-router-dom</b>
+<p>
+eact-router contains all the common components between react-router-dom and react-router-native. When should you use one over the other? If you're on the web then react-router-dom should have everything you need as it also exports the common components you'll need. If you're using React Native, react-router-native should have everything you need for the same reason. So you'll probably never have to import anything directly from react-router. 
+</p>
+
+
+<h1>Redux</h1>
+<pre>
+It is used to manage the state of the app
+1)When we have complex hirarchy where the down component needs a state so we cannot pass state in lowest level of hirarchy we can but it'll be complex process
+
+2)And redux create a state store where all the states are stored as global and any component can access them and it's created on highest level on hirarchy.
+
+3)
+App.js
+|
+|
+ ---->Login.js
+ ---->Profile.js
+ 
+ They are siblings of each other
+ It is not possible to pass data from one component to another, we can using props but redux is easy. To make it work without redux: we have uname and pswd in Login.js so that all we can pass as props to App.js and then from App.js as props to Profile.js. 
+ But with using redux we store state as global so any components can access it.
+ 
+4)All the states will be in index.js, which will be global and can be accessed by any components. We'll create a single store which will contain all the states.
+ 
+Step 1: install redux
+$ npm install redux react-redux @reduxjs/toolkit
+
+This means we are installing two packages(react-redux @reduxjs/toolkit) that is the way installing more than 2 libraries in react 
+
+Step 2:
+
+every component inside the Provider will have access to the store
+
+NOte: dont forget to restart the server
+
+PENDING
+
+diagram:
+name: redux
+</pre>
+
+<h1>Virtual DOM</h1>
+<pre>
+1)In big projects we use large amount of DOM manupulation which slows the performace of the app. To address this prob we use virtual DOM.
+2)Virtual DOM is just the blueprint of the Actual DOM as in moving a bed from the hall to bedroom in blueprint but not actually.
+3)Virtual DOM object has the same power and has properties and methods like the DOM object.
+4)Manupaluating a Actual DOM is slower but manupaluating the Virtual DOM is much faster than actual DOM.
+
+diagram:
+Conside a Actual DOM in blue image and React Dom(virtual dom) in yellow
+ whenever any component changes it updates the entire virtual DOM it does it very quickly.
+ 
+Once the virtual dom updated it compares the actual dom's snapshot(blue image) with pink image(virtual dom)
+
+React maintain two virtual DOM one with updated state virtual DOM and other previous state virtual DOM and then it react see the actual dom and change only those elements which are changed.
+
+React can only update the necessary part of the DOM.
+
+diagram:
+This process is called as reconciliation
+name: virtual dom
+ 
+</pre>
+
+
+<h1>Lifecycle methods in react js</h1>
+<pre>
+
+</pre>
+
+import React, { useState } from 'react'
+import { Axios } from 'axios';
+
+
+export const AxiosGet = () => {
+    const [joke, setJoke] = useState("");
+
+        function getJokes() {
+            fetch("https://icanhazdadjoke.com/")
+            .then((response)=> response.json())
+            .then((data) => {
+                    setJoke(data.joke);
+                });
+            };    
+                return (
+                    <div>
+                        <h1>{joke}</h1> <br/>
+                        <button onClick={getJokes}>Next</button>
+                    </div>
+                );
+        };
+
+   
+   
+To uninstall the pacjage in react
+Same like we install a package
+$ npm uninstall react-router
+
+
+Applying stylesheet:(remove alredy give style notes on git and add this)
+Method 1: using external stylesheet
+
+create a style.css in .src
+.primary{
+    color:blue
+}
+.bg-color{
+    background-color: red;
+}
+
+import './style.css'
+
+&lt;h1 className="primary bg-color"&gt;Products&lt;/h1&gt;
+
+Method 2: inline stylesheet
+we give this as an object
+
+below the imports write
+const mystyle={
+    fontSize: '190px',
+    backgroundColor: 'yellow'
+}
+
+&lt;h1 className="primary bg-color" style={mystyle}&gt;Products&lt;/h1&gt;
+
+OR 
+
+&lt;div style={{color:"red"}}&gt;
+
+Here both external and inline have background color property defined, so inline will get the priority and bg color will be yellow
+
+Method 3:using style modules
+
+Example: we have style.css defined in App component so that style can be used with all the child components. So if we define same class it may conflict to avoid that we can use css module. Using css module we can use that class for that particular component only.
+
+App.js
+import styles from './appStyle.module.css'
+
+
+Create appStyle.module.css on the same location where App.js is
+.success{
+    color: green
+}
+
+App.js
+&lt;h1 className={style.success}&gt;Products&lt;/h1&gt;
+
+If i use className={style.success} in another component it'll give error so we cant use styles.success in another components
+
+Remember to gave name which ends with .module.css
+
+Public images:
+In your component just give image path. By default react will know its in public directory.
+
+&lt;img src="/image.jpg" alt="image" /&gt;
+
+</pre>
