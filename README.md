@@ -1026,3 +1026,15 @@ useMemo?
 changes it recompute the longest comment again. So we can use useMemo to remember the longest comment and change recomputes only when data changes. 
 </pre>
 
+Redux?
+<pre>
+1)When the lowest level in the hirarchy needs state it is difficult to pass as a props. 
+2)When appln size grows it gets difficult to maintain states. Redux solves this problem
+3)Actions:
+Eg: login, logout is an action
+4)Reducer:
+Eg: what will be the new state, which state it'll be change, etc is done by reducer
+4)Dispatch
+new state values will be dispatch to store to update the state
+</pre>
+
