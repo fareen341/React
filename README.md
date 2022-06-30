@@ -890,4 +890,7 @@ In your component just give image path. By default react will know its in public
 
 &lt;img src="/image.jpg" alt="image" /&gt;
 
+
+Creating react app:
+npx create-react-app my-app
 </pre>
