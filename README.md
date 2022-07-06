@@ -907,6 +907,9 @@ What are states in react?
 <pre>
 This is used to change the state of the web page as in if data changes change it accordingly on the web page.A component's state can change over time; whenever it changes, the component re-renders.
 In functional component we can use useState hook for state maintaining.
+
+
+React components automatically re-render whenever there is a change in their state or props. A simple update of the state, from anywhere in the code, causes all the User Interface (UI) elements to be re-rendered automatically
 </pre>
 
 What is JSX?
