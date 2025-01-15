@@ -106,6 +106,18 @@ Before diving into React, ensure you have a solid understanding of JavaScript fu
 - npm start
 - Naming convention recommened: In the React ecosystem and JavaScript in general, project names tend to follow the lowercase with hyphen style, as seen in popular repositories.
 
+# React Intro
+- It is not framework it is library.
+
+# Project Structure.
+- This is basically like vue we get id root from index.html and render(show) its content on dom.
+- index.js takes the root element from publick folder of index.html and render it, also index.js has imported App.js content.
+
+# Vs Code entensions
+- Javascript ES6 code snippet.
+- ES7 react/redux/GraphQl/React-Native snippets.
+
+
 # React
 
 material design for react<br>
