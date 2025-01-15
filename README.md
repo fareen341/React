@@ -96,6 +96,15 @@ Before diving into React, ensure you have a solid understanding of JavaScript fu
 
 ## 13. Material Design
 
+<hr>
+
+# Installation
+- REquired: Node.js(download lts), npm
+- node -v, npm -v
+- React provides a command-line tool called Create React App to quickly set up a new project with a pre-configured environment. <b>npx create-react-app my-app</b>
+- cd my-app
+- npm start
+
 # React
 
 material design for react<br>
@@ -1148,5 +1157,13 @@ new state values will be dispatch to store to update the state
 6. Loop over array, object.
 7. Object function, Object.keys, Object.values, Object.entries.
 8. Difference in 'of' and 'in' in for loop.
-9. Use of 'use strict'. 
+9. Use of 'use strict'.
+
+# React Interview Questions
+1. Npm vs npx?
+- Imagine toolbox example: npm is for keeping tools, and npx is for borrowing them when you need them!. npx is a tool that comes with npm (version 5.2.0 and later). It is used to execute Node packages without globally installing them.
+- Npx saves disk space by running packages directly from the npm registry.
+
+
+
 
