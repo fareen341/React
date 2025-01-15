@@ -104,6 +104,7 @@ Before diving into React, ensure you have a solid understanding of JavaScript fu
 - React provides a command-line tool called Create React App to quickly set up a new project with a pre-configured environment. <b>npx create-react-app my-app</b>
 - cd my-app
 - npm start
+- Naming convention recommened: In the React ecosystem and JavaScript in general, project names tend to follow the lowercase with hyphen style, as seen in popular repositories.
 
 # React
 
