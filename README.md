@@ -108,6 +108,7 @@ Before diving into React, ensure you have a solid understanding of JavaScript fu
 
 # React Intro
 - It is not framework it is library.
+- It is all about components.
 
 # Project Structure.
 - This is basically like vue we get id root from index.html and render(show) its content on dom.
@@ -116,7 +117,72 @@ Before diving into React, ensure you have a solid understanding of JavaScript fu
 # Vs Code entensions
 - Javascript ES6 code snippet.
 - ES7 react/redux/GraphQl/React-Native snippets.
+- rafce(react arrow function with with default in vs code will give component.
 
+# Components
+A component should have:
+1. We dont need import this after version 17 of react. <b>import React from 'react'</b> In react we can make use of html with js with the help of react module imported above component. Which is called as jsx.
+2. Any one functional component.
+3. It should always return something.
+4. We exporting it so that we can use it on index.js.
+```javascript
+// Eg
+import React from 'react'	// Not needed
+
+const App = () => {
+  return (
+    <div>
+      Hello world
+    </div>
+  )
+}
+
+export default App
+```
+5. Two components cannot have same name.
+
+<b>Nested Component</b>
+```javascript
+const App = () => {
+  return (
+    <div>
+      <h1>This is starting page</h1>
+      <Loading/>
+    </div>
+  )
+}
+
+
+const Loading = () => {
+  return (
+    <div>
+      <h1>Loading ...</h1>
+    </div>
+  )
+}
+
+export default App
+```
+
+# JSX(JavaScript XML)
+Rules:
+1. Always return a single element. Below code is not valid. It can be div, section or any element as parent but only one. Or it can be <React.Fragment></React.Fragment> or just <></>
+```javascript
+import React from 'react'
+
+const App = () => {
+  return (
+    <div></div>
+    <p></p>
+  )
+}
+
+export default App
+```
+2. For adding style using class we cant use class as it is reserved in react by oops. we can use className.
+3. We need to close every tag in jsx for example <img></img> or <img src="" />. Anyhow it should be closed.
+4. For every attribute use camel case, like className which are combination of two words.
+5. Auto complete for jsx in vs code -> setting -> top right corner -> editor icon, add following line <b>"emmet.includeLanguages": {"javascript": "javascriptreact"},</b>
 
 # React
 
