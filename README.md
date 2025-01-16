@@ -196,6 +196,10 @@ export default App
 - It stores and holds the data.
 - 
 
+# Icons
+https://react-icons.github.io/react-icons/<br>
+
+
  
 # React
 
