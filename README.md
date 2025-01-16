@@ -184,6 +184,19 @@ export default App
 4. For every attribute use camel case, like className which are combination of two words.
 5. Auto complete for jsx in vs code -> setting -> top right corner -> editor icon, add following line <b>"emmet.includeLanguages": {"javascript": "javascriptreact"},</b>
 
+# Style
+- It is recommended to have seperate style for each component, cuz one single file for every component will clash style name if two component using same style but different body.
+- To add inline style we have to use it inside 2 curley braceses and it should also pascal case, i.e backgroundColor.
+```html
+<h1 className="header" style={{ backgroundColor: "red" }}>This is headers...</h1>
+```
+- Add bootstrap in react project, go to index.html and add the cdn of bootstrap of css and js.
+
+# useState Hook
+- It stores and holds the data.
+- 
+
+ 
 # React
 
 material design for react<br>
