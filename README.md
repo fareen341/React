@@ -336,13 +336,35 @@ const Vendor = () => {
 - Now, if you want to pass a piece of data from App to ComponentC, you would need to pass it through ComponentA and ComponentB, even though these two components don't need the data. This can make the code harder to maintain and understand.
 - Prop drilling can be handle via Context Api or Redux.
 
+# useReducer Hook
+- The useReducer hook in React is an alternative to useState for managing state in a component. It is particularly useful when the state logic is complex, involves multiple sub-values, or depends on the previous state.
+- Syntax:
+```javascript
+const [state, dispatch] = useReducer(reducer, initialState);
+
+/*
+reducer: A function that specifies how the state should be updated based on an action. It takes two arguments:
+state: The current state.
+action: An object that describes the update.
+initialState: The initial state value.
+dispatch: A function used to send actions to the reducer. i.e dispatch()
+
+We need to define reducer function which takes state, action parameter.
+const reducer = (state, action) => {} 
+*/
+```
+- For a single component, choose one method for state management to keep the logic straightforward.
+- While useReducer is for component-level state, it can be combined with useContext for managing global state.
+
+
+
 
 # Icons
 https://react-icons.github.io/react-icons/<br>
 
 # Packages required
 1. <b>Axios:</b> npm install axios
-2.
+2. <b>Bootstrap React:</b> https://react-bootstrap.netlify.app/docs/getting-started/introduction
 
 
 # React Filter Api Data Example
