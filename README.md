@@ -359,6 +359,7 @@ const reducer = (state, action) => {}
 # contextApi and useContext Hook
 - It is used to access the data/state provided by the Context in any component that is a descendant of the Provider.
 - So, the Context API sets up the storage and sharing mechanism, while useContext is the tool for accessing that shared data within the component tree.
+- For context (heh, get it), useContext is a hook that allows access to data and functions from a parent component within a child component without having to pass props down through layers of children components (aka prop drilling).
 ```javascript
 // Create a new file with any name, creating store using Context Api
 
