@@ -193,12 +193,81 @@ export default App
 - Add bootstrap in react project, go to index.html and add the cdn of bootstrap of css and js.
 
 # useState Hook
-- It stores and holds the data.
-- 
+- It stores and holds the data/state.
+- The useState hook is a fundamental hook in React used to manage state within functional components.
+```javascript
+const [state, setState] = useState(initialState);
+
+/*
+state: This is the current state value. Initially, it will be the value passed to useState().
+setState: This is a function used to update the state. You call setState whenever you want to update the state value.
+initialState: This is the value you want to initialize the state with.
+It can be any data type like number, string, boolean, array, object, or even null.
+*/
+```
+- Example
+```javascript
+const App = () => {
+  const [count, setCount] = useState(1)
+  return (
+    <div>
+      <button onClick={() => setCount(count + 1)}> Increment </button>
+      <h3>Incrememt: {count}</h3>
+    </div>
+  )
+}
+```
+
+# useEffect hook
+- By default, useEffect runs after every render, but you can control when it runs by providing a second argument, the dependency array.
+- Syntax:
+```javascript
+useEffect(() => {
+  // Your side-effect logic here
+
+  return () => {
+    // Cleanup logic (optional)
+  };
+}, [dependencies]);
+```
+- Example:
+```jaavscript
+useEffect(() => {
+  // This runs after every render
+  console.log('Component rendered!');
+});
+
+
+// In above code we might see useEffect calling twice and console.log twice, this is cuz of react strict used in index.html
+// React Strict Mode is a development-only feature that intentionally calls certain lifecycle methods twice (including useEffect) to help identify potential side effects or issues in your code.
+// We can stop this by commenting React.StrictMode
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+
+useEffect(() => {
+  // This runs only once when the component mounts
+  console.log('Component mounted!');
+}, []);  // Empty array means run only once
+
+
+useEffect(() => {
+  console.log('Count updated:', count);
+}, [count]);	// Calls every time count value changes.
+
+```
+
+
 
 # Icons
 https://react-icons.github.io/react-icons/<br>
 
+# Packages required
+
+# Hooks lifecycle
 
  
 # React
