@@ -257,15 +257,152 @@ useEffect(() => {
 useEffect(() => {
   console.log('Count updated:', count);
 }, [count]);	// Calls every time count value changes.
-
 ```
 
+# Calling api and use of map
+```javascript
+const Vendor = () => {
+  const [vendor, setVendot] = useState([])
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/vendor_with_skills/')
+      .then((response) => {
+        console.log('Response.....', typeof(response.data));
+        setVendot(response.data);
+      }).catch((error) => {
+        console.log('Error.....', error);
+      })
+  }, []);
+
+
+  return (
+    <div>
+      <h1>Response is:</h1>
+      <ul>
+        {vendor.map((val) => (
+          <li key={val.id}>Name: {val.name}</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+```
+
+# Props
+- Props (short for properties) are used to pass data from one component to another in React. They allow components to communicate and share information with each other. Props are read-only and are passed from a parent component to a child component.
+- Always Props are Passed from Parent to Child.
+```javascript
+// Below ({ vendor }) is destructuring, it takes value from parent as assign it as object to vendor
+
+// VendorCard Component
+const VendorCard = ({ vendor }) => {
+  return (
+    <div>
+      <ul>
+        {vendor.map((val) => (
+          <li key={val.id}>Name: {val.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+// Vendor Component
+const Vendor = () => {
+  const [vendor, setVendor] = useState([]); // Fixed typo (setVendot -> setVendor)
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/vendor_with_skills/')
+      .then((response) => {
+        console.log('Response.....', typeof(response.data));
+        setVendor(response.data); // Corrected to setVendor
+      }).catch((error) => {
+        console.log('Error.....', error);
+      });
+  }, []);
+
+  return (
+    <div>
+      <h1>Response is:</h1>
+      <VendorCard vendor={vendor} /> {/* Pass vendor as a prop */}
+    </div>
+  );
+};
+```
+- <b>Prop drilling problem</b>:
+	- `App` (Parent)
+	  - `ComponentA` (Child)
+	    - `ComponentB` (Grandchild)
+	      - `ComponentC` (Great-Grandchild)
+- Now, if you want to pass a piece of data from App to ComponentC, you would need to pass it through ComponentA and ComponentB, even though these two components don't need the data. This can make the code harder to maintain and understand.
+- Prop drilling can be handle via Context Api or Redux.
 
 
 # Icons
 https://react-icons.github.io/react-icons/<br>
 
 # Packages required
+1. <b>Axios:</b> npm install axios
+2.
+
+
+# React Filter Api Data Example
+- In below code use ```javascript onClick={() => filterDesignation(item)} ``` use function inside arrow function, cuz we need to call this function only when click event occurs.
+```javascript
+import React, { useEffect, useState } from 'react'
+import axios from "axios";
+
+const Vendor = () => {
+  const [vendor, setVendot] = useState([]);       // initially store the api reponse here, so that when filter it does not change the response data
+  const [filteredVendor, setFilteredVendor] = useState([]);    // store filtered data.
+
+  const designation = [...vendor.map((item) => item.profession), 'All'];
+  // const designation = ['IT', 'Graphic', 'Dr']
+  const filterDesignation = (desg) => {
+    if(desg === 'All'){
+      setFilteredVendor(vendor);
+      return;
+    }
+    const updatedVendor = vendor.filter((item) => {
+      return item.profession === desg;
+    });
+    setFilteredVendor(updatedVendor);
+
+  }
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/vendor_with_skills/')
+      .then((response) => {
+        setVendot(response.data);
+        setFilteredVendor(response.data);
+      }).catch((error) => {
+        console.log('Error.....', error);
+      })
+  }, []);
+
+
+  return (
+    <div>
+      <h1>Response is:</h1>
+      <p>
+        {designation.map((item) => (
+          <span style={{marginRight: '10px', border: '1px solid black', padding: '10px'}} key={item} onClick={() => filterDesignation(item)}>
+            {item}
+          </span>
+        ))}
+      </p>
+
+      <ul>
+          {filteredVendor.map((val) => (
+          <li key={val.id}>Name: {val.name}</li>
+          ))}
+      </ul>
+    </div>
+  )
+}
+
+export default Vendor
+```
+
 
 # Hooks lifecycle
 
@@ -1329,6 +1466,20 @@ new state values will be dispatch to store to update the state
 - Imagine toolbox example: npm is for keeping tools, and npx is for borrowing them when you need them!. npx is a tool that comes with npm (version 5.2.0 and later). It is used to execute Node packages without globally installing them.
 - Npx saves disk space by running packages directly from the npm registry.
 
+# Examples:
+1. Increment Decrement counter in one like condition.
+```javascript
+const Counter = () => {
+    const [counter, stateIncCounter] = useState(10);
 
+    return (
+        <>
+            <h1>Counter: {counter}</h1>
+            <button style={{backgroundColor: 'pink'}} onClick={() => {stateIncCounter(counter + 1)}}>Increment</button>
+            <button style={{backgroundColor: 'pink'}} onClick={() => counter > 0? stateIncCounter(counter - 1): 0}>Decrement</button>
+        </>
+    )
+}
+```
 
 
