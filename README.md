@@ -356,8 +356,49 @@ const reducer = (state, action) => {}
 - For a single component, choose one method for state management to keep the logic straightforward.
 - While useReducer is for component-level state, it can be combined with useContext for managing global state.
 
+# contextApi and useContext Hook
+- It is used to access the data/state provided by the Context in any component that is a descendant of the Provider.
+- So, the Context API sets up the storage and sharing mechanism, while useContext is the tool for accessing that shared data within the component tree.
+```javascript
+// Create a new file with any name, creating store using Context Api
 
+import { createContext, useState } from "react";
 
+// Step 1
+export const CounterContext = createContext();      // It is like a warehouse
+
+// Step 2
+export const CounterProvider = ({ children }) => {
+    // It is storage, which store for example: mobile, laptop, headset etc
+    // All the data and all the state of entire project should be here.
+    // console.log('Children....', children);
+    const [counter, incrStateCounter] = useState(0);
+    const increment = () => incrStateCounter(counter + 1);
+    return <CounterContext.Provider value={{ counter, increment }}>{ children }</CounterContext.Provider>
+}
+
+// Accessing store using useContext hook.
+const Home = () => {
+  const {counter, increment} = useContext(CounterContext);
+
+  return (
+    <>
+        <h1>Counter: {counter}</h1>
+        <button style={{'backgroundColor': 'pink'}} onClick={increment}>Increment</button>
+    </>
+  )
+}
+
+const App = () => {
+  return (
+    <CounterProvider>
+      <Home/>
+    </CounterProvider>
+  )
+}
+```
+- In the Context API, children is a special prop that represents the child components nested inside a component. This allows you to wrap components inside a Provider and pass them as children.
+- The name of the prop passed from context api and its accessing should be same.
 
 # Icons
 https://react-icons.github.io/react-icons/<br>
