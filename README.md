@@ -469,6 +469,35 @@ const Counter = React.memo(({ handleClick }) => {
 });
 ```
 
+# useRef Hook
+- useRef is used to get the refrence of the form, like we do in document.getElementById.
+- Example:
+```javascript
+const App = () => {
+  const username = useRef(null);
+  const password = useRef(null);
+  const saveFornData = (e) => {
+    e.preventDefault();
+    // Old way
+    // const uname = document.getElementById('username');
+    // const pswd = document.getElementById('password');
+
+    // New way using ref
+    console.log(`Uname: ${username.current.value}, Pswd: ${password.current.value}`);
+  }
+
+  return (
+    <div>
+      <form>
+        <input type='text' id="username" ref={username} /><br />
+        <input type='text' id="password" ref={password} /><br />
+        <button type='submit' onClick={saveFornData}>Save</button>
+      </form>
+    </div>
+  );
+}
+```
+
 # Difference between React.memo and useMemo
 - React.memo checks for the props, if the props REFRENCE changesd then the component re-renders. Every time state changes component re-renders and when it re-render it pass the props which is part of parent component.
 - It only change when we pass OBJECT as a props. Cuz object refrences changes on every state changes.
