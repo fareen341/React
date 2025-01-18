@@ -642,6 +642,96 @@ const Vendor = () => {
 export default Vendor
 ```
 
+# Redux
+- It is used for state management.
+- In react data flows from parent to child. It has State, Action, Reducer.
+- You can only have <b>single store</b> in a redux application.
+- Every redux store has a single root render function.
+- Installation <b>npm i redux react-redux</b>
+- To debug redux app we can use Redux Dev Tools. See below in extensions topic.
+- Example:
+```javascript
+// Step 1:
+// Create folder actions, reducers.
+
+// Step 2: inside actions create index.js
+// Here we give all the actions our application need like incr and decr.
+export const incr = (num) => {
+    return {
+      type: 'increment',
+      payload: num
+    }
+}
+
+
+export const decr = (num) => {
+  return {
+    type: 'decrement',
+    payload: num
+  }
+}
+
+
+// Step 3: Create incrDecr.js
+// This takes actions and tell how to do it, basically a function which perform based on actions.
+const initialState = 0;
+
+const changeNumber = (state = initialState, action) => {
+    switch (action.type){
+        case 'increment': {
+            console.log('actions......', action);
+            console.log('actions......', action.payload);
+            return state + action.payload
+        };
+        case 'decrement': return state - 1;
+        default: return state;
+    }
+}
+
+export default changeNumber;
+
+// Step 4: create store.py
+'''
+This basically stores the state of entire application.
+So whenever or wherever we need state we can fetch it from store.
+'''
+import { createStore } from "redux";
+import rootReducer from "./reducers";
+
+// now store is a centrilized store for all states
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+export default store;
+
+// Step 5: inside App.js or any component, make use of state from store.
+'''
+useSelector: To fetch data from store.
+dispatch: dispatch is a method that is used to send or "dispatch" actions to the Redux store. Like a dispatch in real time delivery from amazon.
+'''
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { incr } from './react_redux/actions';
+
+const App = () => {
+  // Get data from store
+  const myState = useSelector((state) => state.changeNumber);
+  const dispatch = useDispatch();
+  return (
+    <div>
+      <h1>Counter: {myState}</h1>
+      <button style={{ backgroundColor: 'pink' }} onClick={ () => dispatch(incr(5)) }>Incrememt</button>
+      <button style={{ backgroundColor: 'skyblue' }}>Decrement</button>
+    </div>
+  )
+}
+
+export default App
+```
+
+# Extensions
+- For <b>React</b> use chrome extension, react dev tools.
+- For <b>Redux</b> use chrome extension, redux dev tools from https://github.com/reduxjs/redux-devtools/tree/main/extension, it also have documentation of how to use it. Also we need to attach it to our store give instruction in https://github.com/reduxjs/redux-devtools/tree/main/extension#installation. 
+
 
 # Hooks lifecycle
 
