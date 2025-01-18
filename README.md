@@ -469,6 +469,51 @@ const Counter = React.memo(({ handleClick }) => {
 });
 ```
 
+# Difference between React.memo and useMemo
+- React.memo checks for the props, if the props REFRENCE changesd then the component re-renders. Every time state changes component re-renders and when it re-render it pass the props which is part of parent component.
+- It only change when we pass OBJECT as a props. Cuz object refrences changes on every state changes.
+- useMemo and React.memo does not re-renders component unless dependency array changes and in case of React.memo when props changes.
+```javascript
+// React.memo fails when we pass object in props, in that case we can use useMemo
+const App = () => {
+  const [count, setCount] = useState(0);
+  const increment = () => {
+    setCount((prevCount) => prevCount + 1);
+  }
+
+  const obj = {
+    name: 'mobile',
+    price: 1200
+  }
+
+  return (
+    <div>
+      <ExpensiveComponent obj={obj} />
+      <button onClick={increment}>Click</button>
+      <h1>Number of times a button clicked {count}</h1>
+    </div>
+  );
+}
+
+
+// child
+const ExpensiveComponent = React.memo(({ obj }) => {
+  const sum = () => {
+      console.log('Sum function called...');
+      let i = 0;
+      for (i=0; i <= 10000000; i++){
+          i = i + 1;
+      }
+      return i;
+  }
+  const total = sum();	// when dont use useMemo the function will calculate every time
+  // const total = useMemo(() => sum(), []);
+  return <p>Sum: {total}</p>
+});
+
+
+// It's rendering even tho we have used React.memo
+```
 
 # Difference Between useMemo and useCallback
 - useMemo: Memoizes a value.
