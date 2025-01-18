@@ -401,6 +401,51 @@ const App = () => {
 - In the Context API, children is a special prop that represents the child components nested inside a component. This allows you to wrap components inside a Provider and pass them as children.
 - The name of the prop passed from context api and its accessing should be same.
 
+# useMemo Hook
+- The useMemo hook in React is used to memoize the result of a computation to optimize performance. It ensures that a computationally expensive operation is recomputed only when its dependencies change, rather than on every render.
+- It is used to remember the value and not function unlike useCallBack.
+- <b>Avoiding Unnecessary Renders:</b> When a component passes computed data to its children, useMemo ensures that the computed value is not recreated unnecessarily, preventing child components from re-rendering.
+- The useMemo hook does not stop re-rendering, but it helps optimize performance by memoizing the results of a computation so that it only recalculates when certain dependencies change.
+- Example:
+```javascript
+// parent component
+const App = () => {
+  const [count, setCount] = useState(0);
+  const increment = () => {
+    setCount((prevCount) => prevCount + 1);
+  }
+
+  return (
+    <div>
+      <Counter/>
+      <button onClick={increment}>Click</button>
+      <h1>Number of times a button clicked {count}</h1>
+    </div>
+  );
+}
+
+// child component
+const ExpensiveComponent = () => {
+    const sum = () => {
+        console.log('Sum function called...');
+        let i = 0;
+        for (i=0; i <= 10000000; i++){
+            i = i + 1;
+        }
+        return i;
+    }
+    // const total = sum();	// when dont use useMemo the function will calculate every time
+    const total = useMemo(() => sum(), []);
+    return <p>Sum: {total}</p>
+};
+```
+
+
+# Difference Between useMemo and useCallback
+- useMemo: Memoizes a value.
+- useCallback: Memoizes a function reference.
+
+
 # Icons
 https://react-icons.github.io/react-icons/<br>
 
