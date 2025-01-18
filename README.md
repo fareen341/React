@@ -548,6 +548,33 @@ const ExpensiveComponent = React.memo(({ obj }) => {
 - useMemo: Memoizes a value.
 - useCallback: Memoizes a function reference.
 
+# useLayoutEffect Hook
+- useEffect is called when DOM render. useLayoutEffect called before useEffect. This is like created hook in vue js.
+- Changing styles or updating the layout before the user sees them.
+- useEffect is asynchronious, useLayoutEffect is synchronious.
+- When we have more than one useEffect, it'll run in first to last order, if we give useLayoutEffect it'll first run and then complete the sequence from first to last i.e to to bottom.
+- Example:
+```javascript
+const App = () => {
+  useEffect(() => {
+    console.log('This is first...');
+  });
+
+  useLayoutEffect(() => {
+    console.log('This is third...');
+  });
+
+  useEffect(() => {
+    console.log('This is second...');
+  });
+
+  return (
+    <>
+    <h1>App</h1>
+    </>
+  );
+}
+```
 
 # Icons
 https://react-icons.github.io/react-icons/<br>
