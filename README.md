@@ -440,6 +440,35 @@ const ExpensiveComponent = () => {
 };
 ```
 
+# useCallback
+- useCallback is a React hook that returns a memoized version of a callback function. It ensures the function is only re-created when its dependencies change, which can help improve performance in components where passing or re-creating functions might cause unnecessary re-renders.
+- It prevent un-necessaru rerendering, be caution using it, cuz if we have code which needs rendering along with rerender, render code wont run cuz it stop re-rendeing.
+- The child component only render when the dependency array changes. 
+- Example:
+```javascript
+// parent
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  const increment = useCallback(() => {
+    setCount((prevCount) => prevCount + 1);
+  }, []);
+
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <Counter handleClick={increment} />
+    </div>
+  );
+};
+
+// child
+const Counter = React.memo(({ handleClick }) => {
+  console.log('Button re-rendered');
+  return <button onClick={handleClick}>Click Me</button>;
+});
+```
+
 
 # Difference Between useMemo and useCallback
 - useMemo: Memoizes a value.
