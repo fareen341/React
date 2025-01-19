@@ -654,7 +654,7 @@ https://react-icons.github.io/react-icons/<br>
 # Packages required
 1. <b>Axios:</b> npm install axios
 2. <b>Bootstrap React:</b> https://react-bootstrap.netlify.app/docs/getting-started/introduction
-3. <b>React-Router-Dom<b>: react-router-dom
+3. <b>React-Router-Dom</b>: react-router-dom
 
 
 # React Filter Api Data Example
