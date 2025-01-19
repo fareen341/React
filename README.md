@@ -677,6 +677,7 @@ export default Vendor
 - Every redux store has a single root render function.
 - Installation <b>npm i redux react-redux</b>
 - To debug redux app we can use Redux Dev Tools. See below in extensions topic.
+- So basically we get state from store object, and we use dispatch to pass updatedState to redux store. 
 - Example:
 ```javascript
 // Step 1:
