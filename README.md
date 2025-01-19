@@ -576,87 +576,6 @@ const App = () => {
 }
 ```
 
-# React - Router - DOM
-# React Router
-- This is independent of react, react is different library and react-router is different, although we can combine both together.
-- Install: npm install react-router-dom
-- We can use nav to give link and routes to give path.
-- Create a protected router which check if token is exists else navigate to login page.
-- Create login page which has login function which gets and sets the token.
-- Create a seperate file which has all the links and routes.
-```javascript
-// Login
-const Login = () => {
-    const login = () => {
-        localStorage.setItem('login', true);
-    };
-    return (
-        <div>
-            <button onClick={login}>click to login</button>
-        </div>
-    )
-}
-
-
-// ProtectedRoute, which checks for token before giving access.
-const ProtectedRoute = ({ component }) => {
-  const navigate = useNavigate();
-  useEffect(() =>{
-    const login = localStorage.getItem('login');
-    if (!login){
-      navigate('/login');
-    }
-  });
-
-  return (
-    <div>This is protected view...</div>
-  )
-}
-
-// App.js
-const User = () => {
-  // To pass query string
-  const [searchParams] = useSearchParams();
-  const category = searchParams.get('company_policy') || 'all';
-  const price = searchParams.get('price') || 'any';
-
-  // To pass id
-  const { id } = useParams();
-  return <h1>User ID: {id}</h1>;
-};
-
-const App = () => (
-  <BrowserRouter>
-    <nav>
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-      {/* <Link to="/user/123">User</Link> */}
-      <Link to="/about?company_policy=new&price=high">View Policy</Link>
-      <Link to="/dashboard">Dashboard</Link>
-      <Link to="/login">Login</Link>
-    </nav>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/user/:id" element={<User />} />
-      <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="*" element={<h1>404 Not Found</h1>} />
-    </Routes>
-  </BrowserRouter>
-);
-
-```
-
-# Icons
-https://react-icons.github.io/react-icons/<br>
-
-# Packages required
-1. <b>Axios:</b> npm install axios
-2. <b>Bootstrap React:</b> https://react-bootstrap.netlify.app/docs/getting-started/introduction
-3. <b>React-Router-Dom</b>: react-router-dom
-
-
 # React Filter Api Data Example
 - In below code use ```javascript onClick={() => filterDesignation(item)} ``` use function inside arrow function, cuz we need to call this function only when click event occurs.
 ```javascript
@@ -801,10 +720,216 @@ const App = () => {
 export default App
 ```
 
+
+# React - Router - DOM
+- This is independent of react, react is different library and react-router is different, although we can combine both together.
+- Install: npm install react-router-dom
+- We can use nav to give link and routes to give path.
+- Create a protected router which check if token is exists else navigate to login page.
+- Create login page which has login function which gets and sets the token.
+- Create a seperate file which has all the links and routes.
+```javascript
+// Login
+const Login = () => {
+    const login = () => {
+        localStorage.setItem('login', true);
+    };
+    return (
+        <div>
+            <button onClick={login}>click to login</button>
+        </div>
+    )
+}
+
+
+// ProtectedRoute, which checks for token before giving access.
+const ProtectedRoute = ({ component }) => {
+  const navigate = useNavigate();
+  useEffect(() =>{
+    const login = localStorage.getItem('login');
+    if (!login){
+      navigate('/login');
+    }
+  });
+
+  return (
+    <div>This is protected view...</div>
+  )
+}
+
+// App.js
+const User = () => {
+  // To pass query string
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get('company_policy') || 'all';
+  const price = searchParams.get('price') || 'any';
+
+  // To pass id
+  const { id } = useParams();
+  return <h1>User ID: {id}</h1>;
+};
+
+const App = () => (
+  <BrowserRouter>
+    <nav>
+      <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
+      {/* <Link to="/user/123">User</Link> */}
+      <Link to="/about?company_policy=new&price=high">View Policy</Link>
+      <Link to="/dashboard">Dashboard</Link>
+      <Link to="/login">Login</Link>
+    </nav>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/user/:id" element={<User />} />
+      <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="*" element={<h1>404 Not Found</h1>} />
+    </Routes>
+  </BrowserRouter>
+);
+
+```
+
+# Icons
+https://react-icons.github.io/react-icons/<br>
+
+# Packages required
+1. <b>Axios:</b> npm install axios
+2. <b>Bootstrap React:</b> https://react-bootstrap.netlify.app/docs/getting-started/introduction
+3. <b>React-Router-Dom</b>: react-router-dom
+4. <b>React-Datatable:</b> npm install react-data-table-component
+
+
 # Extensions
 - For <b>React</b> use chrome extension, react dev tools.
 - For <b>Redux</b> use chrome extension, redux dev tools from https://github.com/reduxjs/redux-devtools/tree/main/extension, it also have documentation of how to use it. Also we need to attach it to our store give instruction in https://github.com/reduxjs/redux-devtools/tree/main/extension#installation. 
 
+
+# React - Datatable
+- Installation: npm install react-data-table-component.
+- Example code of search and print functionality.
+```javascript
+import React, { useState, useEffect } from "react";
+import DataTable from "react-data-table-component";
+import axios from "axios";
+
+const App = () => {
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]); // Data filtered by search
+  const [searchTerm, setSearchTerm] = useState("");
+  const [pending, setPending] = useState(true);
+
+  // Fetch data from API
+  useEffect(() => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/users")
+      .then((response) => {
+        setData(response.data);
+        setFilteredData(response.data); // Initialize filteredData with the full dataset
+        setPending(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setPending(false);
+      });
+  }, []);
+
+  // Handle search input
+  const handleSearch = (event) => {
+    const value = event.target.value.toLowerCase();
+    setSearchTerm(value);
+
+    // Filter the data based on the search term
+    const filtered = data.filter(
+      (item) =>
+        item.name.toLowerCase().includes(value) ||
+        item.email.toLowerCase().includes(value) ||
+        item.phone.toLowerCase().includes(value) ||
+        item.website.toLowerCase().includes(value)
+    );
+
+    setFilteredData(filtered);
+  };
+
+  // Handle print
+  const handlePrint = () => {
+    window.print();
+  };
+
+  // Define table columns
+  const columns = [
+    {
+      name: "Name",
+      selector: (row) => row.name,
+      sortable: true,
+    },
+    {
+      name: "Email",
+      selector: (row) => row.email,
+      sortable: true,
+    },
+    {
+      name: "Phone",
+      selector: (row) => row.phone,
+    },
+    {
+      name: "Website",
+      selector: (row) => row.website,
+    },
+  ];
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h2>React DataTable with Print and Search</h2>
+
+      {/* Search Bar */}
+      <div style={{ marginBottom: "20px" }}>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={handleSearch}
+          style={{
+            padding: "10px",
+            border: "1px solid #ccc",
+            borderRadius: "5px",
+            width: "300px",
+          }}
+        />
+        <button
+          onClick={handlePrint}
+          style={{
+            marginLeft: "10px",
+            padding: "10px 20px",
+            backgroundColor: "#4CAF50",
+            color: "white",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          Print
+        </button>
+      </div>
+
+      {/* DataTable */}
+      <DataTable
+        title="User List"
+        columns={columns}
+        data={filteredData} // Use filteredData to display the filtered results
+        progressPending={pending}
+        pagination
+        highlightOnHover
+        responsive
+      />
+    </div>
+  );
+};
+
+export default App;
+```
 
 # Hooks lifecycle
 
