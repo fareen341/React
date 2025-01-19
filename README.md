@@ -289,6 +289,7 @@ const Vendor = () => {
 
 # Props
 - Props (short for properties) are used to pass data from one component to another in React. They allow components to communicate and share information with each other. Props are read-only and are passed from a parent component to a child component.
+- Can pass anything as a props, str, array, object, function etc.
 - Always Props are Passed from Parent to Child.
 ```javascript
 // Below ({ vendor }) is destructuring, it takes value from parent as assign it as object to vendor
@@ -335,6 +336,18 @@ const Vendor = () => {
 	      - `ComponentC` (Great-Grandchild)
 - Now, if you want to pass a piece of data from App to ComponentC, you would need to pass it through ComponentA and ComponentB, even though these two components don't need the data. This can make the code harder to maintain and understand.
 - Prop drilling can be handle via Context Api or Redux.
+- Passing more than one prop.
+```javascript
+<Counter counterFunction={incrementCounter} person={person} />
+const Counter = ({ counterFunction, person }) => {
+  return (
+    <div>
+      <button onClick={counterFunction}>Click</button>
+      <h1>{person.name}</h1>
+    </div>
+  );
+}
+```
 
 # useReducer Hook
 - The useReducer hook in React is an alternative to useState for managing state in a component. It is particularly useful when the state logic is complex, involves multiple sub-values, or depends on the previous state.
