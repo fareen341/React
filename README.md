@@ -351,7 +351,7 @@ const Counter = ({ counterFunction, person }) => {
 
 # useReducer Hook
 - The useReducer hook in React is an alternative to useState for managing state in a component. It is particularly useful when the state logic is complex, involves multiple sub-values, or depends on the previous state.
-- Syntax:
+- Syntax & Example:
 ```javascript
 const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -365,6 +365,26 @@ dispatch: A function used to send actions to the reducer. i.e dispatch()
 We need to define reducer function which takes state, action parameter.
 const reducer = (state, action) => {} 
 */
+
+// Example
+const App = () => {
+  const reducer = (state, action) => {
+    if (action.type === 'incr'){
+      return state + 1;
+    }else{
+      return 0;
+    }
+  };
+  const initialState = 0;
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <div>
+      <h1>Counter: {state}</h1>
+      <button onClick={() => dispatch({ type:'incr'})}>Click to increment</button>
+    </div>
+  )
+}
 ```
 - For a single component, choose one method for state management to keep the logic straightforward.
 - While useReducer is for component-level state, it can be combined with useContext for managing global state.
