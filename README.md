@@ -576,38 +576,6 @@ const App = () => {
 }
 ```
 
-const User = () => {
-  // To pass query string
-  const [searchParams] = useSearchParams();
-  const category = searchParams.get('company_policy') || 'all';
-  const price = searchParams.get('price') || 'any';
-
-  // To pass id
-  const { id } = useParams();
-  return <h1>User ID: {id}</h1>;
-};
-
-const App = () => (
-  <BrowserRouter>
-    <nav>
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-      {/* <Link to="/user/123">User</Link> */}
-      <Link to="/about?company_policy=new&price=high">View Policy</Link>
-      <Link to="/dashboard">Dashboard</Link>
-      <Link to="/login">Login</Link>
-    </nav>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/user/:id" element={<User />} />
-      <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="*" element={<h1>404 Not Found</h1>} />
-    </Routes>
-  </BrowserRouter>
-);
-
 # React - Router - DOM
 # React Router
 - This is independent of react, react is different library and react-router is different, although we can combine both together.
