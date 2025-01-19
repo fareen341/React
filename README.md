@@ -393,8 +393,9 @@ const App = () => {
 - It is used to access the data/state provided by the Context in any component that is a descendant of the Provider.
 - So, the Context API sets up the storage and sharing mechanism, while useContext is the tool for accessing that shared data within the component tree.
 - For context (heh, get it), useContext is a hook that allows access to data and functions from a parent component within a child component without having to pass props down through layers of children components (aka prop drilling).
-- In velow code createContext is a contextApi.
-- See example here to make use of contextApi with useReducer: 
+- In below code createContext is a contextApi.
+- See example here to make use of contextApi with useReducer: https://github.com/fareen341/React/blob/main/useReducer.js
+- We can make use of contextApi with normal useState also.
 ```javascript
 // Create a new file with any name, creating store using Context Api
 
