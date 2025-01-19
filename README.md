@@ -576,12 +576,117 @@ const App = () => {
 }
 ```
 
+const User = () => {
+  // To pass query string
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get('company_policy') || 'all';
+  const price = searchParams.get('price') || 'any';
+
+  // To pass id
+  const { id } = useParams();
+  return <h1>User ID: {id}</h1>;
+};
+
+const App = () => (
+  <BrowserRouter>
+    <nav>
+      <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
+      {/* <Link to="/user/123">User</Link> */}
+      <Link to="/about?company_policy=new&price=high">View Policy</Link>
+      <Link to="/dashboard">Dashboard</Link>
+      <Link to="/login">Login</Link>
+    </nav>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/user/:id" element={<User />} />
+      <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="*" element={<h1>404 Not Found</h1>} />
+    </Routes>
+  </BrowserRouter>
+);
+
+# React - Router - DOM
+# React Router
+- This is independent of react, react is different library and react-router is different, although we can combine both together.
+- Install: npm install react-router-dom
+- We can use nav to give link and routes to give path.
+- Create a protected router which check if token is exists else navigate to login page.
+- Create login page which has login function which gets and sets the token.
+- Create a seperate file which has all the links and routes.
+```javascript
+// Login
+const Login = () => {
+    const login = () => {
+        localStorage.setItem('login', true);
+    };
+    return (
+        <div>
+            <button onClick={login}>click to login</button>
+        </div>
+    )
+}
+
+
+// ProtectedRoute, which checks for token before giving access.
+const ProtectedRoute = ({ component }) => {
+  const navigate = useNavigate();
+  useEffect(() =>{
+    const login = localStorage.getItem('login');
+    if (!login){
+      navigate('/login');
+    }
+  });
+
+  return (
+    <div>This is protected view...</div>
+  )
+}
+
+// App.js
+const User = () => {
+  // To pass query string
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get('company_policy') || 'all';
+  const price = searchParams.get('price') || 'any';
+
+  // To pass id
+  const { id } = useParams();
+  return <h1>User ID: {id}</h1>;
+};
+
+const App = () => (
+  <BrowserRouter>
+    <nav>
+      <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
+      {/* <Link to="/user/123">User</Link> */}
+      <Link to="/about?company_policy=new&price=high">View Policy</Link>
+      <Link to="/dashboard">Dashboard</Link>
+      <Link to="/login">Login</Link>
+    </nav>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/user/:id" element={<User />} />
+      <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="*" element={<h1>404 Not Found</h1>} />
+    </Routes>
+  </BrowserRouter>
+);
+
+```
+
 # Icons
 https://react-icons.github.io/react-icons/<br>
 
 # Packages required
 1. <b>Axios:</b> npm install axios
 2. <b>Bootstrap React:</b> https://react-bootstrap.netlify.app/docs/getting-started/introduction
+3. <b>React-Router-Dom<b>: react-router-dom
 
 
 # React Filter Api Data Example
