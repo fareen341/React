@@ -968,7 +968,7 @@ const App = () => {
 ```
 - Example controlled form:
 - i. Note: if we dont give onChange it'll conside the input as read-only and we cant type anything in input. This is bcoz now this form is controlled cuz we are using react state which is part of react and this form become controlled.
-```jaavscript
+```javascript
 const App = () => {
   const [username, setName] = useState('');
 
@@ -999,6 +999,13 @@ const App = () => {
 # What is the purpose of strict mode in React?
 - React's Strict Mode is a tool for highlighting potential problems in an application during development. It helps identify components with unsafe lifecycle methods, deprecated APIs, and other issues that may cause problems in future versions of React. Strict Mode only works in development mode and does not affect production builds.
 - This is reason we see console twice when page dom fisrt load.
+- We get it by default in react, we can remove this but not recommenede.
+```javascript
+root.render(
+  <React.StrictMode>
+      <App />
+  </React.StrictMode>
+```
 
 
 # What is pure function?
