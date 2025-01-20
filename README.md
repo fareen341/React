@@ -677,7 +677,10 @@ export default Vendor
 - Every redux store has a single root render function.
 - Installation <b>npm i redux react-redux</b>
 - To debug redux app we can use Redux Dev Tools. See below in extensions topic.
-- So basically we get state from store object, and we use dispatch to pass updatedState to redux store. 
+- So basically we get state from store object, and we use dispatch to pass updatedState to redux store.
+- In main index.js we need to attach redux with out react app. The <Provider> component in Redux plays a crucial role in connecting your React application to the Redux store. Here’s a detailed explanation.
+- By passing the store as a prop, the <Provider> ensures: Any component in the component tree can access the store without needing to pass it manually as a prop.
+
 - Example:
 ```javascript
 // Step 1:
@@ -720,10 +723,10 @@ const changeNumber = (state = initialState, action) => {
 export default changeNumber;
 
 // Step 4: create store.py
-'''
+/*
 This basically stores the state of entire application.
 So whenever or wherever we need state we can fetch it from store.
-'''
+*/
 import { createStore } from "redux";
 import rootReducer from "./reducers";
 
@@ -732,11 +735,27 @@ const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && wi
 
 export default store;
 
+// Attach store to main index.js
+import store from './react_redux/store';
+import { Provider } from 'react-redux';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// store.subscribe(() => console.log(store.getState()));
+
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
+);
+
 // Step 5: inside App.js or any component, make use of state from store.
-'''
+/*
 useSelector: To fetch data from store.
 dispatch: dispatch is a method that is used to send or "dispatch" actions to the Redux store. Like a dispatch in real time delivery from amazon.
-'''
+*/
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { incr } from './react_redux/actions';
