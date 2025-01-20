@@ -462,8 +462,9 @@ const App = () => {
 
 // child component
 const ExpensiveComponent = () => {
+    console.log('This component render...');		// this will run every time cuz, memo hook stores the value not the function	 
     const sum = () => {
-        console.log('Sum function called...');
+        console.log('Sum function called...');		// This will run only once		
         let i = 0;
         for (i=0; i <= 10000000; i++){
             i = i + 1;
