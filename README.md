@@ -2232,6 +2232,48 @@ export default App;
 - Npx saves disk space by running packages directly from the npm registry.
 
 6. Redux Saga, Redux Thunk explain?
+7. What is named and default exports.
+- Use named exports when exporting multiple constants or utilities. Example constants.
+- Use a default export when exporting a single main functionality or value. Example component.
+```javascript
+// Named exports, like we do for constants
+export const baseUrlMain = 'http://127.0.0.1:8000';
+
+// import
+import { baseUrlMain } from "./ProtectedRoute";
+
+// Default exports, live we do for components
+const baseUrlMain = 'http://127.0.0.1:8000';
+export default baseUrlMain;
+
+// import
+import App from './App';
+```
+8. Why useReducer when we have useState?
+- useState is used when we have simple states. When we have complex state use useReducer.
+
+
+
+# Points To Remember:
+1. When calling a function always use arrow function, if we want a function with parameters and we use like show(person), it'll invote directly when page load. To make it get called only when click event occured wrapped it in arrow function.
+```javascript
+const App = () => {
+  const person = {
+    name: 'Fareen',
+    age: 27
+  }
+
+  const show = ({ name,age }) => {      // Destructuring
+    console.log(`Name: ${name}, Age: ${age}`);
+  };
+  return (
+    <div>
+      <button onClick={() => show(person)}>Click to get</button>
+      {/* <button onClick={show()}>Click to get</button>   This will get invoke directly when page load*/}
+    </div>
+  )
+}
+```
 
 # Examples:
 1. Increment Decrement counter in one like condition.
