@@ -2134,17 +2134,6 @@ Eg: what will be the new state, which state it'll be change, etc is done by redu
 new state values will be dispatch to store to update the state
 </pre>
 
-# Interview Questions on JS
-1. Difference in find and filter.
-2. Map, Filter, Reduce, and other array methods.
-3. Difference in async axios and normal axios?
-4. Difference in == vs ===?
-5. Single line boolen condition.
-6. Loop over array, object.
-7. Object function, Object.keys, Object.values, Object.entries.
-8. Difference in 'of' and 'in' in for loop.
-9. Use of 'use strict'.
-
 # React Interview Questions
 1. Npm vs npx?
 - Imagine toolbox example: npm is for keeping tools, and npx is for borrowing them when you need them!. npx is a tool that comes with npm (version 5.2.0 and later). It is used to execute Node packages without globally installing them.
