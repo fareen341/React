@@ -794,6 +794,62 @@ const App = () => {
 export default App
 ```
 
+# Redux Saga and Thung
+- Both are middleware used in Redux for handling asynchronous function calls.
+- <b>Thunk</b>: Redux Thunk is a middleware that allows you to write action creators that return functions instead of plain objects. This is useful for handling asynchronous operations, such as API calls, in Redux.
+- <b>Saga</b>: Redux Saga is a middleware library for handling side effects (like API calls) in Redux. It uses generators for managing asynchronous operations, making complex workflows and side effects easier to test and manage.
+- Thung uses basic api call for asynchronous function like api call. Saga uses generators and use yield keyword.
+- We need to pass thung and saga in our store object.
+- Saga uses the same generators logic which we use in python.
+```javascript
+// Thung
+export const fetchVendors = () => async (dispatch) => {
+    dispatch(fetchVendorsRequest());
+    try {
+        const response = await axios.get(baseUrlMain + `/api/vendor_with_skills/`);
+        dispatch(fetchVendorsSuccess(response.data));
+    } catch (error) {
+        dispatch(fetchVendorsFailure(error.message));
+    }
+};
+
+// In our logic of form, we'll call fetchVendors directly in useEffect, based on that it'll handle sucess and failour.
+
+
+
+// Saga
+import { call, put, takeEvery } from 'redux-saga/effects';
+import axios from 'axios';
+import { fetchVendorsRequest, fetchVendorsSuccess, fetchVendorsFailure } from './actions';
+
+// API call function
+const fetchVendorsApi = () => axios.get('https://api.example.com/vendors');
+
+// Worker saga: Performs the async operation and dispatches actions
+function* fetchVendorsSaga() {
+    try {
+        // Dispatching a request action before starting the API call
+        yield put(fetchVendorsRequest());
+
+        // Pauses here and waits for the result of the API call
+        const response = yield call(fetchVendorsApi);
+
+        // Once the API call is successful, dispatch the success action with the response data
+        yield put(fetchVendorsSuccess(response.data));
+    } catch (error) {
+        // If an error occurs during the API call, dispatch the failure action
+        yield put(fetchVendorsFailure(error.message));
+    }
+}
+
+// Watcher saga: Watches for the FETCH_VENDORS_REQUEST action
+function* watchFetchVendors() {
+    yield takeEvery('FETCH_VENDORS_REQUEST', fetchVendorsSaga);
+}
+
+export default watchFetchVendors;
+```
+
 # Lifecycle hook in function component.
 1. <b>Mounting (Component Creation)</b>: This phase occurs when the component is rendered for the first time. You can use useEffect with an empty dependency array ([]) to run code only once when the component mounts.
 2. <b>Updating (State or Props Changes)</b>: This phase occurs when the component's state or props change. Use useEffect with specific dependencies to run code whenever those dependencies change.
