@@ -2169,9 +2169,69 @@ new state values will be dispatch to store to update the state
 </pre>
 
 # React Interview Questions
-1. Npm vs npx?
+1. Why do we use map and not foreach when rendering element in ui?
+- Bcoz map return new array it does not touch original, where as forEach works with original array. We use map in React because it returns a new array of JSX elements, which can be directly rendered in the UI.
+2. What are the tags changes in react?
+- Every tag should be closed.
+- class -> className
+- a href="#" -> link
+- onclick -> onClick
+- label for -> htmlFor
+- In React: You cannot use <meta> tags directly in JSX. Instead, use a package like react-helmet to manage the head section.
+```jaavscript
+
+import { Helmet } from 'react-helmet';
+<Helmet>
+  <meta name="description" content="My React app" />
+</Helmet>
+```
+3. What is higher order components HOC?
+- A Higher-Order Component (HOC) in React is a function that takes a component and returns a new component with additional props or functionality. HOCs are a pattern used to enhance or modify the behavior of a component without directly modifying it.
+```javascript
+import React from 'react';
+
+// The HOC function
+function withMessage(Component) {
+  return function EnhancedComponent(props) {
+    return <Component {...props} message="Hello from HOC!" />;
+  };
+}
+
+// A simple component to display the message
+function DisplayMessage({ message }) {
+  return <div>{message}</div>;
+}
+
+// Another component that uses the same HOC
+function AnotherMessage({ message }) {
+  return <div>{message} - This is another component!</div>;
+}
+
+// Wrapping both components with the HOC
+const DisplayMessageWithHOC = withMessage(DisplayMessage);
+const AnotherMessageWithHOC = withMessage(AnotherMessage);
+
+function App() {
+  return (
+    <div>
+      <h1>Multiple Components Using HOC</h1>
+      <DisplayMessageWithHOC />
+      <AnotherMessageWithHOC />
+    </div>
+  );
+}
+
+export default App;
+```
+4. React, Redux, versions?
+- React: 19.0.0
+- Redux: 9.2.0
+  
+5. Npm vs npx?
 - Imagine toolbox example: npm is for keeping tools, and npx is for borrowing them when you need them!. npx is a tool that comes with npm (version 5.2.0 and later). It is used to execute Node packages without globally installing them.
 - Npx saves disk space by running packages directly from the npm registry.
+
+6. Redux Saga, Redux Thunk explain?
 
 # Examples:
 1. Increment Decrement counter in one like condition.
