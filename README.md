@@ -907,6 +907,7 @@ https://react-icons.github.io/react-icons/<br>
 
 
 # React - Datatable
+- Doc link: https://react-data-table-component.netlify.app/?path=/docs/getting-started-intro--docs
 - Installation: npm install react-data-table-component.
 - Example code of search and print functionality.
 ```javascript
