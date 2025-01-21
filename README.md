@@ -798,6 +798,26 @@ export default App
 1. <b>Mounting (Component Creation)</b>: This phase occurs when the component is rendered for the first time. You can use useEffect with an empty dependency array ([]) to run code only once when the component mounts.
 2. <b>Updating (State or Props Changes)</b>: This phase occurs when the component's state or props change. Use useEffect with specific dependencies to run code whenever those dependencies change.
 3. <b>Unmounting (Component Removal)</b>: This phase occurs when the component is removed from the DOM. Use the cleanup function returned by useEffect to handle tasks like removing event listeners or canceling timers.
+```javascript
+// component mount
+useEffect(()) => {
+
+, []};
+
+// State change or update
+
+// component mount
+useEffect(()) => {
+
+, [state]};
+
+// component unmount, cleanup phase
+useEffect(()) => {
+
+  return(() =>{
+  });	
+, [state]};
+```
 
 # React DOM Real Vs Virtual
 - React does not directly change the real dom, it first create virtual dom and make changes in virtual dom and it compares real dom with virtual and make only those changed changes in real dom.
