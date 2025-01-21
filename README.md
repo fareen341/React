@@ -805,8 +805,6 @@ useEffect(()) => {
 , []};
 
 // State change or update
-
-// component mount
 useEffect(()) => {
 
 , [state]};
