@@ -706,6 +706,8 @@ export const decr = (num) => {
 }
 
 
+
+
 // Step 3: Create incrDecr.js
 // This takes actions and tell how to do it, basically a function which perform based on actions.
 const initialState = 0;
@@ -724,25 +726,35 @@ const changeNumber = (state = initialState, action) => {
 
 export default changeNumber;
 
+
+
+
 // Step 4: create store.py
 /*
 This basically stores the state of entire application.
 So whenever or wherever we need state we can fetch it from store.
 */
-import { createStore } from "redux";
-import rootReducer from "./reducers";
+import { combineReducers } from 'redux';
+import { loginForm } from './actions/actions';
 
-// now store is a centrilized store for all states
-const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const rootReducer = combineReducers({
+  login: loginForm, // Add your other reducers here
+});
 
-export default store;
+export default rootReducer;
 
-// Attach store to main index.js
-import store from './react_redux/store';
+
+
+
+// Step 5: index.js
 import { Provider } from 'react-redux';
+import rootReducer from './redux/store';
+import { createStore } from 'redux';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // Optional Redux DevTools support
+);
 // store.subscribe(() => console.log(store.getState()));
 
 root.render(
@@ -753,7 +765,11 @@ root.render(
   </React.StrictMode>
 );
 
-// Step 5: inside App.js or any component, make use of state from store.
+
+
+
+
+// Step 6: inside App.js or any component, make use of state from store.
 /*
 useSelector: To fetch data from store.
 dispatch: dispatch is a method that is used to send or "dispatch" actions to the Redux store. Like a dispatch in real time delivery from amazon.
