@@ -2289,7 +2289,8 @@ export default App;
 - Npx saves disk space by running packages directly from the npm registry.
 
 6. Redux Saga, Redux Thunk explain?
-7. What is named and default exports.
+
+8. What is named and default exports.
 - Use named exports when exporting multiple constants or utilities. Example constants.
 - Use a default export when exporting a single main functionality or value. Example component.
 ```javascript
@@ -2306,9 +2307,13 @@ export default baseUrlMain;
 // import
 import App from './App';
 ```
+
 8. Why useReducer when we have useState?
 - useState is used when we have simple states. When we have complex state use useReducer.
 
+9. What is child props or childrens when we work with context api or other?
+- In React, children is a special prop that allows you to pass elements or components as the content of another component. It is particularly useful when you want to create reusable components that can wrap around other content.
+- It is used to pass component as props.
 
 
 # Points To Remember:
