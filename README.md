@@ -2325,7 +2325,10 @@ import App from './App';
 17. What is HOC?
 - HOC example is we have a component which prints hello world and we take that component and enhance it like take hello world and add bye to it, i.e hello world, bye.
 18. What is strict mode in react?
-
+19. What is mapStateToProps, mapDispatchToProps?
+- They were older version of react, new version support useDispatch: To send action, useSelector: To get state.
+20. Without using redux saga. Can we call api?
+- Yes, when we use redux thunk we call api using services, function passed to reducer. Without it we call api using useEffect.
 
 # Points To Remember:
 1. When calling a function always use arrow function, if we want a function with parameters and we use like show(person), it'll invote directly when page load. To make it get called only when click event occured wrapped it in arrow function.
