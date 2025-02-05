@@ -2315,6 +2315,17 @@ import App from './App';
 - In React, children is a special prop that allows you to pass elements or components as the content of another component. It is particularly useful when you want to create reusable components that can wrap around other content.
 - It is used to pass component as props.
 
+10. Controlled/uncontrolled component Or input?
+11. What is the purpose of the key attribute in react list?
+12. What is react fragment and why they usefull?
+13. What is virtual dom and how does react use it to improve performance?
+14. React lifecycle method?
+15. Explain usestate and useEffect hook?
+16. What is ContextApi?, how it is differ from useState?
+17. What is HOC?
+- HOC example is we have a component which prints hello world and we take that component and enhance it like take hello world and add bye to it, i.e hello world, bye.
+18. What is strict mode in react?
+
 
 # Points To Remember:
 1. When calling a function always use arrow function, if we want a function with parameters and we use like show(person), it'll invote directly when page load. To make it get called only when click event occured wrapped it in arrow function.
