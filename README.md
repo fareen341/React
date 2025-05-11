@@ -1287,6 +1287,74 @@ import App from './App';
 20. Without using redux saga. Can we call api?
 - Yes, when we use redux thunk we call api using services, function passed to reducer. Without it we call api using useEffect.
 
+
+21. How do you optimize performance in a React app?
+- use React.Memo, useMemo, useCallback.
+- Pagination
+- use Production build
+- so use lazy loading and load only the content required in the web page.
+- improve the backend api performance, cuz eventually data will be fetch from apis only.
+- use cache data to avoid hiting apis to improve performance.
+
+22. What is Diffing?
+- Diffing is the algorithm used during reconciliation to efficiently compare two trees (previous and current Virtual DOM trees).
+
+23. What is React Suspense and Lazy Loading? Or Code Splitting in React?
+- Both React Suspense and Lazy Loading are powerful features in React that help with optimizing the loading of components and improving performance by deferring the loading of non-critical content until it is actually needed.
+```javascript
+import React, { Suspense } from 'react';
+
+// Lazy loading the Profile component
+const Profile = React.lazy(() => import('./Profile'));
+
+function App() {
+  return (
+    <div>
+      <h1>Welcome to the App!</h1>
+      <Suspense fallback={<div>Loading Profile...</div>}>
+        <Profile />
+      </Suspense>
+    </div>
+  );
+}
+```
+- Basically use it to render component only when needed.
+
+24. What is an Error Boundary in React?
+- An Error Boundary in React is a component that catches JavaScript errors anywhere in its child component tree and displays a fallback UI instead of crashing the entire component tree.
+
+25. React Fiber?
+- React Fiber is indeed the new reconciliation algorithm used by React to manage and update the user interface (UI). The reconciliation process is how React decides what parts of the UI need to be updated when the state or props of a component change.
+
+26. Why we use keys?
+- So we use keys to keep track of which item is updated and render/update only that part only on ui.
+
+28. Difference in redux and context api?
+- Redux is 3rd party library used for complex state manitainance. Context api is built-in feature of react.
+- Use redux for large application, context api for small to medium app.
+
+29. How do you handle navigation programmatically in React?
+- We can use useNavigation.
+```javascript
+const navigate = useNavigate();  // Hook to get the navigate function
+
+const handleClick = () => {
+  navigate('/new-page');  // Navigate to a new route programmatically
+};
+```
+
+30. How to pass id from a component via query string, params?
+```javascript
+<Router>
+  <Routes>
+    {/* ListPage route */}
+    <Route path="/" element={<ListPage />} />
+    
+    {/* DetailPage route with dynamic ID */}
+    <Route path="detail/:id" element={<DetailPage />} />
+  </Routes>
+</Router>
+```
 # Points To Remember:
 1. When calling a function always use arrow function, if we want a function with parameters and we use like show(person), it'll invote directly when page load. To make it get called only when click event occured wrapped it in arrow function.
 ```javascript
