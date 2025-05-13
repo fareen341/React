@@ -220,6 +220,13 @@ const App = () => {
 
 # useEffect hook
 - By default, useEffect runs after every render, but you can control when it runs by providing a second argument, the dependency array.
+- Empty dependency array: component will run only once regardless of any state change.
+- No dependency array at all: component will render each time any state changes.
+```javascript
+useEffect(() => {
+  console.log("Runs on every render");
+});
+```
 - Syntax:
 ```javascript
 useEffect(() => {
