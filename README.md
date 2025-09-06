@@ -1409,6 +1409,6 @@ const Counter = () => {
 - Push Notification just like mobile app
 - Update data in backgroun after it comes online from offline
 - Can use GPS and access hardware component.
-- 
+- Add to home screen option, when cliked it'll look like a native app and have app icon created on home screen of mobile.
 
 
