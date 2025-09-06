@@ -1399,4 +1399,16 @@ const Counter = () => {
 }
 ```
 
+# PWA (Prograssive Web App)
+- PWA is used to make a website looks native to each platform, for eg if we see it on mobile it'll look like mobile app.
+
+<b>Stuff needed to make a website acts as PWA</b>:
+- Responsive
+- Work in offline mode
+- Looks like native mobile app
+- Push Notification just like mobile app
+- Update data in backgroun after it comes online from offline
+- Can use GPS and access hardware component.
+- 
+
 
